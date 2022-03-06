@@ -1,6 +1,12 @@
 <template>
     <div id="app">
-        <ImageModal :openImageModal.sync="openImage" />
+        <ImageModal 
+            v-on:viewModal="handleSetImageModal"
+            v-on:nextImage="handleNextCaroselImage"
+            v-on:prevImage="handlePrevCaroselImage"
+            :openImageModal='modalView'
+            :imageIndex="caroselIndex"
+            :currentCaroselImages='imagesToView' />
         <div class="app__innerContainer">
             <div class="app__innerContainer__rows" v-for='(itemRow, idx) in itemsInRows' :key='`${idx}__row`' >
                 <ContentCard 
@@ -23,13 +29,33 @@ export default {
         ImageModal
     },
     methods: {
-        handleSetImageModal() {
-            console.log("HI")
+        handleSetImageModal(imagesToView) {
+            this.modalView = !this.modalView
+             this.imagesToView = imagesToView  
+            if(this.modalView){
+                this.caroselIndex = 0
+            }
+        },
+        handleNextCaroselImage() {
+            if(this.caroselIndex === this.imagesToView.length - 1){
+                this.caroselIndex = 0
+            }else{
+                this.caroselIndex++
+            }
+        },
+        handlePrevCaroselImage() {
+            if(this.caroselIndex === 0){
+                this.caroselIndex = this.imagesToView.length - 1
+            }else{
+                this.caroselIndex--
+            }
         }
     },
-    data() {
+    data () {
         return {
-            openImage: false,
+            modalView: false,
+            caroselIndex: 0,
+            imagesToView: [],
         }
     },
     computed: {

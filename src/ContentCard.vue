@@ -1,7 +1,11 @@
 <template>
     <div id='content-card' class="contentCard">
         <div class="contentCard__contentContainer">
-            <img @click="handleImagePress()" class="contentCard__contentContainer__imageInView" :src="cardData.images.length > 0 ? cardData.images[0] : require('./assets/broken-image.svg')" alt="">
+            <div @click="handleImagePress(cardData.images)" v-if="cardData.images.length > 0" class="contentCard__contentContainer__openImageIndicator">
+                <span class="contentCard__contentContainer__openImageIndicator__numberOfImages">{{cardData.images.length}}</span>
+                <img class="contentCard__contentContainer__openImageIndicator__icon" src="./assets/open-larger-image.svg" alt="">
+            </div>
+            <img @click="handleImagePress(cardData.images)" class="contentCard__contentContainer__imageInView" :src="cardData.images.length > 0 ? cardData.images[0] : require('./assets/broken-image.svg')" alt="">
             <img class="contentCard__contentContainer__imageInViewBackgroundBlur" :src="cardData.images[0]" alt="">
             <div class="contentCard__contentContainer__creatorView">
                 <img class="contentCard__contentContainer__creatorView__profilePicture" :src="cardData.influencerImage || require('./assets/avatar.png')" alt="">
@@ -36,9 +40,11 @@ export default {
         'cardData'
     ],
     methods: {
-        handleImagePress () {
-            console.log("HELLO")
-            this.$emit('viewModal')
+        handleImagePress (viewTheseImages) {
+
+            if(viewTheseImages.length > 0){
+                this.$emit('viewModal', viewTheseImages)
+            }
         }
     }
 }
@@ -123,13 +129,13 @@ export default {
 }
 
 .contentCard__contentContainer__creatorView{
-    display: flex;
-    width: 100%;
     position: absolute;
-    z-index: 2;
-    align-self: flex-end;
-    margin-bottom: 15px;
+    display: flex;
     align-items: center;
+    align-self: flex-end;
+    width: 100%;
+    z-index: 2;
+    margin-bottom: 15px;
 }
 
 .contentCard__contentContainer__creatorView__profilePicture{
@@ -166,6 +172,41 @@ export default {
 
 .disabled{
     opacity: 0.5;
+}
+
+.contentCard__contentContainer__openImageIndicator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 3;
+    max-width: 200px;
+    opacity: 0;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+}
+
+.contentCard__contentContainer__openImageIndicator__icon{
+    max-width: 200px;
+}
+
+.contentCard__contentContainer:hover .contentCard__contentContainer__openImageIndicator, 
+.contentCard__contentContainer.hover .contentCard__contentContainer__openImageIndicator { 
+    opacity: 1;
+    transition: all 0.3s ease-in;
+}
+
+.contentCard__contentContainer__openImageIndicator__numberOfImages{
+    position: absolute;
+    margin-bottom: 40px;
+    background-color: rgba(255,255,255, 0.3);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
 }
 
 </style>
