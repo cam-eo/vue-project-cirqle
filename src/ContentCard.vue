@@ -58,6 +58,7 @@ export default {
     background-color: transparent;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 20px;
 }
 
 .contentCard__contentContainer{
@@ -113,7 +114,7 @@ export default {
     flex-direction: column;
     background: #26272a;
     padding: 10px;
-    width: 100px;
+    width: 25%;
     border-radius: 8px;
 }
 
@@ -207,6 +208,86 @@ export default {
     padding: 5px;
     border-radius: 5px;
     color: black;
+}
+
+@media only screen and (max-width: 1285px){
+    .contentCard__contentContainer{
+        max-height: 30vw;
+        max-width: 30vw;
+    }
+
+    .contentCard__contentContainer__imageInViewBackgroundBlur{
+        max-width: 30vw;
+    }
+
+    .contentCard__metricsContainer{ 
+        min-width: 30vw;
+    }
+
+    .contentCard__metricsContainer__container__title{
+        font-size: 0.8vw;
+    }
+
+    .contentCard__metricsContainer__container__metric{
+        font-size: 0.8vw;
+    }
+
+    .contentCard__contentContainer__creatorView__textContainer__title{
+        font-size: 1vw;
+    }
+
+    .contentCard__contentContainer__creatorView__textContainer__handle{
+        font-size: 0.8vw;
+    }
+
+    .contentCard__contentContainer__creatorView__profilePicture{
+        max-height: 6vw;
+        max-width: 6vw;
+    }
+
+    .contentCard__metricsContainer__container{
+        padding: 1vw;
+    }
+}
+
+@media only screen and (max-width: 749px){
+    .contentCard__contentContainer{
+        max-height: 90vw;
+        max-width: 90vw;
+    }
+
+    .contentCard__contentContainer__imageInViewBackgroundBlur{
+        max-width: 90vw;
+    }
+
+    .contentCard__metricsContainer{ 
+        min-width: 90vw;
+    }
+
+    .contentCard__metricsContainer__container__title{
+        font-size: 2vw;
+    }
+
+    .contentCard__metricsContainer__container__metric{
+        font-size: 1.5vw;
+    }
+
+    .contentCard__contentContainer__creatorView__textContainer__title{
+        font-size: 3vw;
+    }
+
+    .contentCard__contentContainer__creatorView__textContainer__handle{
+        font-size: 2vw;
+    }
+
+    .contentCard__contentContainer__creatorView__profilePicture{
+        max-width: 20vw;
+        max-height: 20vw;
+    }
+
+    .contentCard__metricsContainer__container{
+        padding: 10px;
+    }
 }
 
 </style>

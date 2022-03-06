@@ -91,8 +91,13 @@ export default {
     margin: 0;
 }
 
+body{
+    background-color: #202022;
+}
+
 #app {
     display: flex;
+    justify-content: center;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -106,13 +111,20 @@ export default {
 .app__innerContainer{
     display: flex;
     flex-direction: column;
-    width: 100%;
     align-items: center;
+    justify-content: center;
+    width: 100%;
     margin-top: 60px;
 }
 
 .app__innerContainer__rows{
     display: flex;
-    margin-bottom: 20px;
+    
+}
+
+@media only screen and (max-width: 749px){
+    .app__innerContainer__rows{
+        flex-direction: column;
+    }
 }
 </style>
